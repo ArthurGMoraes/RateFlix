@@ -1,4 +1,4 @@
-# RateFlix
+# moviemetr
 Aplicação para avaliação e discussões sobre filmes e séries
 PUC Minas
 Alunos:
