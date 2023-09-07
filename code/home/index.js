@@ -10,20 +10,20 @@ const options = {
 fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
   .then(res => res.json())
   .then(data => {
-    // document.getElementById('tela').innerHTML = JSON.stringify(data,null,4)
     console.log(data);
     console.log('Imprimindo produtos');
     let str = '';
     let title = '';
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < data.results.length; i++) {
       let produtos = data.results[i];
       if ( produtos.name != undefined){
         title = produtos.name;
       } else {
         title = produtos.title;
       }
-      str += `<h5>${title}</h5>`;
-      console.log(title);
+      let poster = produtos.poster_path;
+      str += `<h5>${title}</h5>
+              <p><img src="https://image.tmdb.org/t/p/w500${poster}"></p>`;
     }
     document.getElementById('tela').innerHTML = str;
   });
