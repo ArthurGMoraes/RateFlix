@@ -10,7 +10,7 @@ header {
     position: fixed;
     width: 100%;
     margin: 0;
-    padding: 1rem 0;
+    padding: 0 0;
     background-color: #000000;
     display: flex;
     z-index: 1;
@@ -60,11 +60,11 @@ header {
     border: none;
     padding: 10px 20px;
     min-width: 345px;
-    min-height: 49px;
+    min-height: 35px;
     cursor: pointer;
     position: relative;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 15px;
     text-align: left;
 }
 
