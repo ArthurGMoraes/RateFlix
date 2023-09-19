@@ -1,0 +1,27 @@
+.roleta {
+    display: flex;
+    overflow-x: auto;
+    width: 1400px;
+    margin: auto;
+}
+
+.cards {
+    background-color: white;
+    height: 400px;
+    width: 275px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cards img{
+    height: 350px;
+    width: 275px;
+}
+
+
+

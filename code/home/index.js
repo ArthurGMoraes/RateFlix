@@ -7,13 +7,15 @@ const options = {
   };
 
 
-fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
   .then(res => res.json())
   .then(data => {
     console.log(data);
     console.log('Imprimindo produtos');
+    
     let str = '';
     let title = '';
+    str += `<div class="roleta">`;
     for (let i = 0; i < data.results.length; i++) {
       let produtos = data.results[i];
       if ( produtos.name != undefined){
@@ -22,8 +24,15 @@ fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
         title = produtos.title;
       }
       let poster = produtos.poster_path;
-      str += `<h5>${title}</h5>
-              <p><img src="https://image.tmdb.org/t/p/w500${poster}"></p>`;
+      str += `<div class="cards">
+                <h5>${title}</h5>
+                <img src="https://image.tmdb.org/t/p/w500${poster}">
+              </div>`;
     }
+    str += `</div>`;
     document.getElementById('tela').innerHTML = str;
   });
+
+
+
+  
