@@ -41,13 +41,13 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
   
   // forward/Back controls
   function plusSlides(n) {
-    SlideShow(slidePosition += n);
+    if(slidePosition%20 === 1 && n<0){
+      SlideShow(slidePosition = 17 );
+    } else  {
+      SlideShow(slidePosition += n);
+    }
   }
-  
-  //  images controls
-  function currentSlide(n) {
-    SlideShow(slidePosition = n);
-  }
+
   
   function SlideShow(n) {
     var i;
