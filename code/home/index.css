@@ -14,7 +14,7 @@
 
 .cards {
     background-color: #82A0AA66;
-    height: 400px;
+    height: 500px;
     width: 275px;
     margin: 10px;
     display: flex;
@@ -22,13 +22,13 @@
     justify-content: end;
     align-items: center;
     text-align: center;
-
+    font-size: 20px;
     border-radius: 8px;
     
 }
 
 .cards img{
-    height: 350px;
+    height: 412.5px;
     width: 275px;
 }
 

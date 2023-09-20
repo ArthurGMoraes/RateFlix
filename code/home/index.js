@@ -15,6 +15,7 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
     
     let str = '';
     let title = '';
+    let id = 0;
     str += `<div class="roleta">`;
     for (let i = 0; i < data.results.length; i++) {
       let produtos = data.results[i];
@@ -23,10 +24,13 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
       } else {
         title = produtos.title;
       }
+      id = produtos.id;
       let poster = produtos.poster_path;
       str += `<div class="cards">
+              <a href="../detalhesFilme/detalhesFilmes.html?${id}">
                 <img src="https://image.tmdb.org/t/p/w500${poster}">
                 <h5>${title}</h5>
+              </a>
               </div>`;
     }
     str += `</div>
