@@ -1,12 +1,19 @@
+#tela {
+    width: 1300px;
+    margin: auto;
+    position: relative;
+}
+
 .roleta {
     display: flex;
-    overflow-x: auto;
-    width: 1400px;
+    overflow: hidden;
+    width: 1175px;
     margin: auto;
+    position: relative;
 }
 
 .cards {
-    background-color: white;
+    background-color: #82A0AA66;
     height: 400px;
     width: 275px;
     margin: 10px;
@@ -15,7 +22,9 @@
     justify-content: end;
     align-items: center;
     text-align: center;
-    white-space: nowrap;
+
+    border-radius: 8px;
+    
 }
 
 .cards img{
@@ -23,5 +32,27 @@
     width: 275px;
 }
 
-
+.Back, .forward {
+    cursor: pointer;
+    position: absolute;
+    top: 48%;
+    width: auto;
+    margin-top: -23px;
+    padding: 17px;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    transition: 0.4s ease;
+    border-radius: 4px;
+    user-select: none;
+    
+  }
+  
+  .forward {
+    right: 0;
+  }
+  
+  .Back:hover, .forward:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
 

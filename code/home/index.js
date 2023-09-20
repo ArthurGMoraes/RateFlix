@@ -25,14 +25,40 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
       }
       let poster = produtos.poster_path;
       str += `<div class="cards">
-                <h5>${title}</h5>
                 <img src="https://image.tmdb.org/t/p/w500${poster}">
+                <h5>${title}</h5>
               </div>`;
     }
-    str += `</div>`;
+    str += `</div>
+            <a class="Back" onclick="plusSlides(-4)">&#10094;</a>
+            <a class="forward" onclick="plusSlides(4)">&#10095;</a>`;
     document.getElementById('tela').innerHTML = str;
   });
 
 
-
+  var slidePosition = 1;
+  SlideShow(slidePosition);
   
+  // forward/Back controls
+  function plusSlides(n) {
+    SlideShow(slidePosition += n);
+  }
+  
+  //  images controls
+  function currentSlide(n) {
+    SlideShow(slidePosition = n);
+  }
+  
+  function SlideShow(n) {
+    var i;
+    var slides = document.getElementsByClassName("cards");
+    if (n > slides.length) {slidePosition = 1}
+    if (n < 1) {slidePosition = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slidePosition-1%20].style.display = "flex";
+    slides[(slidePosition)%20].style.display = "flex";
+    slides[(slidePosition+1)%20].style.display = "flex";
+    slides[(slidePosition+2)%20].style.display = "flex";
+  } 
