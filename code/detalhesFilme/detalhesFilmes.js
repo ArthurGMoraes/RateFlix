@@ -46,9 +46,11 @@ const options = {
           } else {
             title = produtos.title;
           }
-          str += `<img src="https://image.tmdb.org/t/p/w500${poster}">
-                  <h5> ${title} </h5>
-                  <p> ${descricao} </p>`;
+          str += `<img src="https://image.tmdb.org/t/p/w500${poster}" id="imagem">
+                  <div id="info">
+                  <h5 id="title"> ${title} </h5>
+                  <p id="descricao"> ${descricao} </p>
+                  </div>`;
         
         document.getElementById('tela').innerHTML = str;
         
