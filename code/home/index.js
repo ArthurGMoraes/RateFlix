@@ -42,6 +42,10 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
   });
 
 
+
+
+
+
   var slidePosition = 1;
   SlideShow(slidePosition);
   
@@ -68,3 +72,9 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
     slides[(slidePosition+1)%20].style.display = "flex";
     slides[(slidePosition+2)%20].style.display = "flex";
   } 
+
+  plusSlides(4);
+  plusSlides(-4);
+
+
+  
