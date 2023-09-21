@@ -7,7 +7,7 @@ const options = {
   };
 
 
-fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
+fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
   .then(res => res.json())
   .then(data => {
     console.log(data);
@@ -17,7 +17,8 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
     let title = '';
     let id = 0;
     let media_type ='';
-    str += `<div class="roleta">`;
+    str += `<h3 class="trending"> Populares do dia: </h3>
+            <div class="roleta">`;
     for (let i = 0; i < data.results.length; i++) {
       let produtos = data.results[i];
       if ( produtos.name != undefined){
@@ -40,9 +41,6 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
             <a class="forward" onclick="plusSlides(4)">&#10095;</a>`;
     document.getElementById('tela_roleta').innerHTML = str;
   });
-
-
-
 
 
 
@@ -73,8 +71,7 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
     slides[(slidePosition+2)%20].style.display = "flex";
   } 
 
-  plusSlides(4);
-  plusSlides(-4);
+
 
 
   
