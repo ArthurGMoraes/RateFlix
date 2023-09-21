@@ -22,9 +22,9 @@ const options = {
   function criarPagina(){
     var apiUrl = '';
     if(type == "movie"){
-         apiUrl = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
+         apiUrl = `https://api.themoviedb.org/3/movie/${id}?language=pt-BR`;
     } else {
-         apiUrl = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
+         apiUrl = `https://api.themoviedb.org/3/tv/${id}?language=pt-BR`;
     }
       fetch(apiUrl, options)
       .then(res => res.json())

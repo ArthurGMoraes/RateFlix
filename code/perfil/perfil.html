@@ -2,15 +2,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="..\public\style.css" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <link href="perfil.css" rel="stylesheet">
+    <script src="perfil.js"></script>
     <script src="../public/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>moviemetr</title>
 </head>
 <body>
     <header>
         <div class="headerIcons">
-            <a href="index.html"><img class="logo" src="..\public\logo.png" ></a>
+            <a href="../home/index.html"><img class="logo" src="..\public\logo.png" ></a>
             <div class="dropdown">
                 <button class="dropdown-button">Selecionar por gênero:</button>
                 <div class="dropdown-content">
@@ -51,7 +52,14 @@
                     </ul>
                 </div>
             </div>
-            <a href="perfil.html"><img class="profile" src="..\public\profile.png"></a>
+            <div class="search-container">
+                
+                <input id="searchInput" type="text" placeholder="Pesquisar" name="search">
+                <button id="searchButton" onclick="TESTE()"><i class="fa fa-search"></i></button>
+              
+          </div>
+            
+          <a href="perfil.html" class="profileLink"><img class="profile" src="..\public\profile.png"></a>
         </div>              
     </header>
 

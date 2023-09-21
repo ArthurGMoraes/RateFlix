@@ -7,6 +7,7 @@
     <link href="index.css" rel="stylesheet">
     <script src="index.js"></script>
     <script src="../public/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>moviemetr</title>
 </head>
 <body>
@@ -53,7 +54,14 @@
                     </ul>
                 </div>
             </div>
-            <a href="../perfil/perfil.html"><img class="profile" src="..\public\profile.png"></a>
+            <div class="search-container">
+                
+                  <input id="searchInput" type="text" placeholder="Pesquisar" name="search">
+                  <button id="searchButton" onclick="TESTE()"><i class="fa fa-search"></i></button>
+                
+            </div>
+              
+            <a href="../perfil/perfil.html" class="profileLink"><img class="profile" src="..\public\profile.png"></a>
         </div>              
     </header>
 
