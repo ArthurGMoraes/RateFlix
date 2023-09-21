@@ -20,9 +20,9 @@ fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
     for (let i = 0; i < data.results.length; i++) {
       let produtos = data.results[i];
       if ( produtos.name != undefined){
-        title = produtos.name;
+        title = produtos.name.length > 20 ? produtos.name.substring(0, 20) + '...' : produtos.name;
       } else {
-        title = produtos.title;
+        title = produtos.title.length > 20 ? produtos.title.substring(0, 20) + '...' : produtos.title;
       }
       id = produtos.id;
       let poster = produtos.poster_path;
