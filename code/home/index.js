@@ -74,32 +74,32 @@ fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
   function adicionarNovoCard() {
     const discussao = document.querySelector('.discussao');
 
-    // Criar um novo elemento div para o card
+    
     const novoCard = document.createElement('div');
     novoCard.classList.add('cardsTexto');
 
-    // Definir o título do card como "Tópico Teste"
+    
     const titulo = document.createElement('h5');
     titulo.textContent = "Tópico Teste";
 
-    // Criar um elemento de parágrafo para a descrição
+    
     const descricao = document.createElement('p');
     descricao.textContent = gerarDescricaoAleatoria();
 
-    // Adicionar o título e a descrição ao novo card
+    
     novoCard.appendChild(titulo);
     novoCard.appendChild(descricao);
 
-    // Inserir o novo card diretamente abaixo do h1 e acima da div cardsTexto
+
     discussao.insertBefore(novoCard, document.querySelector('.cardsTexto'));
 }
 
-// Adicione um ouvinte de evento para o botão
+
 const botaoAdicionar = document.getElementById('adicionarCard');
 botaoAdicionar.addEventListener('click', adicionarNovoCard);
 
-// Função para gerar uma descrição aleatória de um filme genérico
+
 function gerarDescricaoAleatoria() {
     const descricao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in justo eu justo commodo tristique. Nulla facilisi. ";
-    return descricao.repeat(3); // Repetir a descrição três vezes para criar três linhas.
+    return descricao.repeat(3); 
 }
