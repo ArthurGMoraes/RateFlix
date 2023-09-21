@@ -1,4 +1,4 @@
-#tela {
+#tela_roleta {
     width: 1300px;
     margin: auto;
     position: relative;
@@ -30,6 +30,11 @@
     
 }
 
+.cards h5{
+    color: whitesmoke;
+}
+
+
 .cards img{
     height: 412.5px;
     width: 275px;
@@ -58,5 +63,14 @@
   
   .Back:hover, .forward:hover {
     background-color: rgba(0,0,0,0.8);
+  }
+
+  .discussao{
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .trending{
+    text-align: center;
   }
 
