@@ -1,3 +1,24 @@
 #tela {
     color:whitesmoke;
+    display: flex;
+}
+
+#imagem{
+    border-radius: 5px;
+    width: 20%;
+    height: 20%;
+    margin-left: 30px;
+    border: 2px solid;
+    border-color: whitesmoke;
+}
+
+#title{
+    font-size: 70px;
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+#descricao{
+    margin-top: 0;
+    margin-left: 20px;
 }
