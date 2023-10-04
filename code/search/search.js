@@ -4,7 +4,8 @@ var url_params = url.split('?input=')
 var input = url_params[url_params.length-1];
 console.log(input);
 
-var apiURL = `https://api.themoviedb.org/3/search/movie?query=${input}&include_adult=false&language=en-US&page=1`
+var movieURL = `https://api.themoviedb.org/3/search/movie?query=${input}&include_adult=false&language=en-US&page=1`
+var tvURL = `https://api.themoviedb.org/3/search/tv?query=${input}&include_adult=false&language=en-US&page=1`
 
 const options = {
     method: 'GET',
@@ -14,7 +15,13 @@ const options = {
     }
   };
   
-  fetch(apiURL, options)
+  fetch(movieURL, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+
+
+    fetch(tvURL, options)
     .then(response => response.json())
     .then(response => console.log(response))
     .catch(err => console.error(err));
