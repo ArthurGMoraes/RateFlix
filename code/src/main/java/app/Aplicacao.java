@@ -1,7 +1,7 @@
 package app;
 
 import static spark.Spark.*;
-import service.FilmeService;
+import service.DiscussaoService;
 
 
 public class Aplicacao {
@@ -9,13 +9,13 @@ public class Aplicacao {
 	private static DiscussaoService discussaoService = new DiscussaoService();
 	
     public static void main(String[] args) {
-        port(6789);
+        port(9876);
         
-        staticFiles.location("/public");
+        staticFiles.location("/web");
         
-        post("/", (request, response) -> discussaoService.insert(request, response));
+        post("/discussao/criar", (request, response) -> discussaoService.insert(request, response));
 
-        get("/", (request, response) -> discussaoService.get(request, response));
+        //get("/discussao/list/:orderby", (request, response) -> discussaoService.getAll(request, response));
         
 
              
