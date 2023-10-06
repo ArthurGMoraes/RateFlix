@@ -46,7 +46,7 @@ public class DiscussaoService {
 		String action = "";
 		String name, titulo, descricao, buttonLabel;
 		
-		action += "produto/criar";
+		action += "discussao/criar";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
 		descricao = "Conteúdo";
@@ -54,7 +54,7 @@ public class DiscussaoService {
 
 		
 		umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"form-add\">";
-		umDiscussao += "\t<table width=\"80%\" bgcolor=\"#f3f3f3\" align=\"center\">";
+		umDiscussao += "\t<table width=\"80%\" bgcolor=\"#00000\" align=\"center\">";
 		umDiscussao += "\t\t<tr>";
 		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\"><font size=\"+2\"><b>&nbsp;&nbsp;&nbsp;" + name + "</b></font></td>";
 		umDiscussao += "\t\t</tr>";
@@ -62,13 +62,8 @@ public class DiscussaoService {
 		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\">&nbsp;</td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td>&nbsp;Descrição: <input class=\"input--register\" type=\"text\" name=\"descricao\" value=\""+ titulo +"\"></td>";
-		umDiscussao += "\t\t\t<td>Preco: <input class=\"input--register\" type=\"text\" name=\"preco\" value=\""+ descricao +"\"></td>";
-		umDiscussao += "\t\t\t<td>Quantidade: <input class=\"input--register\" type=\"text\" name=\"quantidade\" value=\""+ "\"></td>";
-		umDiscussao += "\t\t</tr>";
-		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td>&nbsp;Data de fabricação: <input class=\"input--register\" type=\"text\" name=\"dataFabricacao\" value=\""+  "\"></td>";
-		umDiscussao += "\t\t\t<td>Data de validade: <input class=\"input--register\" type=\"text\" name=\"dataValidade\" value=\""+  "\"></td>";
+		umDiscussao += "\t\t\t<td>&nbsp;Titulo: <input class=\"input--register\" type=\"text\" name=\"titulo\" placeholder=\"Titulo\" value=\"" +"\"></td>";
+		umDiscussao += "\t\t\t<td>Descricaol: <input class=\"input--register\" type=\"text\" name=\"descricao\" placeholder=\"Conteudo\" value=\"" +"\"></td>";
 		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t</table>";
@@ -76,7 +71,7 @@ public class DiscussaoService {
 		
 		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
-		String list = new String("<table width=\"80%\" align=\"center\" bgcolor=\"#f3f3f3\">");
+		/*String list = new String("<table width=\"80%\" align=\"center\" bgcolor=\"#f3f3f3\">");
 		list += "\n<tr><td colspan=\"6\" align=\"left\"><font size=\"+2\"><b>&nbsp;&nbsp;&nbsp;Relação de Discussaos</b></font></td></tr>\n" +
 				"\n<tr><td colspan=\"6\">&nbsp;</td></tr>\n" +
     			"\n<tr>\n" + 
@@ -106,7 +101,7 @@ public class DiscussaoService {
             		  "</tr>\n";
 		}
 		list += "</table>";		
-		form = form.replaceFirst("<LISTAR-DISC>", list);				
+		form = form.replaceFirst("<LISTAR-DISC>", list);	*/			
 }
 	
 	public Object insert(Request request, Response response) {
