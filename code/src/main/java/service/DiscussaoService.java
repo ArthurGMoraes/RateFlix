@@ -8,11 +8,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import dao.DiscussaoDAO;
 import model.Discussao;
-//import spark.Request;
-//import spark.Response;
-import model.Discussao;
 import spark.Request;
 import spark.Response;
+import model.Discussao;
+
 
 
 public class DiscussaoService {
@@ -31,7 +30,7 @@ public class DiscussaoService {
 	}
 
 	public void makeForm(int tipo, Discussao discussao, int orderBy) {
-		String nomeArquivo = "index.html";
+		String nomeArquivo = "src/main/resources/web/home/index.html";
 		form = "";
 		try{
 			Scanner entrada = new Scanner(new File(nomeArquivo));
@@ -41,13 +40,16 @@ public class DiscussaoService {
 		    entrada.close();
 		}  catch (Exception e) { System.out.println(e.getMessage()); }
 		
-		String umDiscussao = "";
-		String action = "/produto/";
-		String name, descricao, buttonLabel;
 		
-		action += "criar";
-		name = "Titulo";
-		descricao = "Contúdo";
+		
+		String umDiscussao = "";
+		String action = "";
+		String name, titulo, descricao, buttonLabel;
+		
+		action += "produto/criar";
+		name = "Tópicos de discussão";
+		titulo = "Titulo";
+		descricao = "Conteúdo";
 		buttonLabel = "Criar";
 
 		
@@ -60,8 +62,8 @@ public class DiscussaoService {
 		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\">&nbsp;</td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td>&nbsp;Descrição: <input class=\"input--register\" type=\"text\" name=\"descricao\" value=\""+ descricao +"\"></td>";
-		umDiscussao += "\t\t\t<td>Preco: <input class=\"input--register\" type=\"text\" name=\"preco\" value=\"" +"\"></td>";
+		umDiscussao += "\t\t\t<td>&nbsp;Descrição: <input class=\"input--register\" type=\"text\" name=\"descricao\" value=\""+ titulo +"\"></td>";
+		umDiscussao += "\t\t\t<td>Preco: <input class=\"input--register\" type=\"text\" name=\"preco\" value=\""+ descricao +"\"></td>";
 		umDiscussao += "\t\t\t<td>Quantidade: <input class=\"input--register\" type=\"text\" name=\"quantidade\" value=\""+ "\"></td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t\t<tr>";
@@ -72,7 +74,7 @@ public class DiscussaoService {
 		umDiscussao += "\t</table>";
 		umDiscussao += "\t</form>";		
 		
-		form = form.replaceFirst("<UM-PRODUTO>", umDiscussao);
+		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
 		String list = new String("<table width=\"80%\" align=\"center\" bgcolor=\"#f3f3f3\">");
 		list += "\n<tr><td colspan=\"6\" align=\"left\"><font size=\"+2\"><b>&nbsp;&nbsp;&nbsp;Relação de Discussaos</b></font></td></tr>\n" +
@@ -104,7 +106,7 @@ public class DiscussaoService {
             		  "</tr>\n";
 		}
 		list += "</table>";		
-		form = form.replaceFirst("<LISTAR-PRODUTO>", list);				
+		form = form.replaceFirst("<LISTAR-DISC>", list);				
 }
 	
 	public Object insert(Request request, Response response) {
@@ -128,4 +130,18 @@ public class DiscussaoService {
 		makeForm();
 		return form.replaceFirst("<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">", "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">");
 	}
+	
+	public void makeForm(int orderBy) {
+		makeForm(FORM_INSERT, new Discussao(), orderBy);
+	}
+	
+	public Object getAll(Request request, Response response) {
+	
+		makeForm();
+	    response.header("Content-Type", "text/html");
+	    response.header("Content-Encoding", "UTF-8");
+		return form;
+	}
+	
+	
 }

@@ -8,14 +8,17 @@ public class Aplicacao {
 	
 	private static DiscussaoService discussaoService = new DiscussaoService();
 	
+	
     public static void main(String[] args) {
-        port(9876);
+        port(1234);
         
         staticFiles.location("/web");
         
+        //get("/", (request, response) -> site.Service.gerar(resquest, response));
+        
         post("/discussao/criar", (request, response) -> discussaoService.insert(request, response));
 
-        //get("/discussao/list/:orderby", (request, response) -> discussaoService.getAll(request, response));
+        get("/", (request, response) -> discussaoService.getAll(request, response));
         
 
              
