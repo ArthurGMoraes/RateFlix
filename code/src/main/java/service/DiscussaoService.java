@@ -29,7 +29,7 @@ public class DiscussaoService {
 		makeForm(FORM_INSERT, new Discussao(), FORM_ORDERBY_ID);
 	}
 
-	public void makeForm(int tipo, Discussao discussao, int orderBy) {
+	public void makeForm(int tipo, Discussao discussao, int order) {
 		String nomeArquivo = "src/main/resources/web/home/index.html";
 		form = "";
 		try{
@@ -44,9 +44,10 @@ public class DiscussaoService {
 		
 		String umDiscussao = "";
 		String action = "";
+		
 		String name, titulo, descricao, buttonLabel;
 		
-		action += "discussao/criar";
+		action = "discussao/criar";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
 		descricao = "Conteúdo";
@@ -67,7 +68,8 @@ public class DiscussaoService {
 		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t</table>";
-		umDiscussao += "\t</form>";		
+		umDiscussao += "\t</form>";	
+		//umDiscussao += "\t<form class=\"form--register\" action=\"" + "/" + "method=\"post\" id=\"form-add\">";
 		
 		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
@@ -105,8 +107,8 @@ public class DiscussaoService {
 }
 	
 	public Object insert(Request request, Response response) {
-		String titulo = "titulo";
-		String conteudo = "conteudo";
+		String titulo = request.queryParams("titulo");
+		String conteudo = request.queryParams("descricao");
 		String autor = "autor";
 		int curtidas = 10;
 		String data = "data";
@@ -115,10 +117,10 @@ public class DiscussaoService {
 		Discussao discussao = new Discussao(-1, titulo, conteudo, autor, curtidas, data);
 		
 		if(discussaoDAO.insert(discussao) == true) {
-            resp = "Discussao (" + titulo + "inserido!";
+			resp = "Discussao" +"( "  + titulo + " )" + "inserido!";
             response.status(201); // 201 Created
 		} else {
-			resp = "Discussao (" + titulo + ") não inserido!";
+			resp = "Discussao" +"( "  + titulo + " )" + "não inserido!";
 			response.status(404); // 404 Not found
 		}
 			
@@ -126,9 +128,9 @@ public class DiscussaoService {
 		return form.replaceFirst("<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">", "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">");
 	}
 	
-	public void makeForm(int orderBy) {
+	/*public void makeForm(int orderBy) {
 		makeForm(FORM_INSERT, new Discussao(), orderBy);
-	}
+	}*/
 	
 	public Object getAll(Request request, Response response) {
 	
@@ -137,6 +139,5 @@ public class DiscussaoService {
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
 	}
-	
 	
 }

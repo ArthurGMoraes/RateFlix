@@ -43,7 +43,6 @@ public class Discussao implements Serializable {
 	}
 
 	public void setTitulo(String titulo) {
-		if (titulo.length() >= 2)
 			this.titulo = titulo;
 	}
 
