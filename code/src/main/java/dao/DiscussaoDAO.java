@@ -26,7 +26,7 @@ public class DiscussaoDAO extends DAO {
 	public boolean insert(Discussao discussao) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO Discussao (titulo, conteudo, autor, curtidas, data) "
+			String sql = "INSERT INTO discussao (titulo, conteudo, autor, curtidas, data) "
 		               + "VALUES (" + discussao.getTitulo() + ", "
 		               + discussao.getConteudo() + ", " + discussao.getAutor() + "," + discussao.getCurtidas() + "," + discussao.getData() + ");";
 			PreparedStatement st = conexao.prepareStatement(sql);

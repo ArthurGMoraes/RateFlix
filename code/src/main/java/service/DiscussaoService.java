@@ -105,11 +105,11 @@ public class DiscussaoService {
 }
 	
 	public Object insert(Request request, Response response) {
-		String titulo = request.queryParams("titulo");
-		String conteudo = request.queryParams("conteudo");
-		String autor = request.queryParams("autor");
-		int curtidas = Integer.parseInt(request.queryParams("curtidas"));
-		String data = request.queryParams("data");
+		String titulo = "titulo";
+		String conteudo = "conteudo";
+		String autor = "autor";
+		int curtidas = 10;
+		String data = "data";
 		String resp = "";
 		
 		Discussao discussao = new Discussao(-1, titulo, conteudo, autor, curtidas, data);
