@@ -20,6 +20,7 @@ public class Aplicacao {
 
         get("/", (request, response) -> discussaoService.getAll(request, response));
         
+        
 
              
     }

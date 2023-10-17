@@ -45,9 +45,10 @@ public class DiscussaoService {
 		String umDiscussao = "";
 		String action = "";
 		
-		String name, titulo, descricao, buttonLabel;
+		String name, titulo, descricao, buttonLabel, action2;
 		
 		action = "discussao/criar";
+		action2 = "/";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
 		descricao = "Conteúdo";
@@ -69,7 +70,8 @@ public class DiscussaoService {
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t</table>";
 		umDiscussao += "\t</form>";	
-		//umDiscussao += "\t<form class=\"form--register\" action=\"" + "/" + "method=\"post\" id=\"form-add\">";
+		umDiscussao += "\t<form class=\"form--register\" action=\"" + action2 + "\" method=\"post\" id=\"atualizar\">";
+		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
 		
 		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
