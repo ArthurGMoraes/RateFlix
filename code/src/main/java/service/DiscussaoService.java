@@ -54,8 +54,7 @@ public class DiscussaoService {
 		descricao = "Conteúdo";
 		buttonLabel = "Criar";
 
-		
-		umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"form-add\">";
+		umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"atualizar\">";
 		umDiscussao += "\t<table width=\"80%\" bgcolor=\"#00000\" align=\"center\">";
 		umDiscussao += "\t\t<tr>";
 		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\"><font size=\"+2\"><b>&nbsp;&nbsp;&nbsp;" + name + "</b></font></td>";
@@ -70,8 +69,6 @@ public class DiscussaoService {
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t</table>";
 		umDiscussao += "\t</form>";	
-		umDiscussao += "\t<form class=\"form--register\" action=\"" + action2 + "\" method=\"post\" id=\"atualizar\">";
-		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
 		
 		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
