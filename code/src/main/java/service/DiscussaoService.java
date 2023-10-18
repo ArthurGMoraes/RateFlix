@@ -47,7 +47,7 @@ public class DiscussaoService {
 		
 		String name, titulo, descricao, buttonLabel, action2;
 		
-		action = "discussao/criar";
+		action = "/discussao/criar/";
 		action2 = "/";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
@@ -63,8 +63,8 @@ public class DiscussaoService {
 		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\">&nbsp;</td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td>&nbsp;Titulo: <input class=\"input--register\" type=\"text\" name=\"titulo\" placeholder=\"Titulo\" value=\"" +"\"></td>";
-		umDiscussao += "\t\t\t<td>Descricaol: <input class=\"input--register\" type=\"text\" name=\"descricao\" placeholder=\"Conteudo\" value=\"" +"\"></td>";
+		umDiscussao += "\t\t\t<td>&nbsp;Título: <input class=\"input--register\" type=\"text\" name=\"titulo\" placeholder=\"Titulo\" value=\"" +"\"></td>";
+		umDiscussao += "\t\t\t<td>Descrição: <input class=\"input--register\" type=\"text\" name=\"descricao\" placeholder=\"Conteudo\" value=\"" +"\"></td>";
 		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
 		umDiscussao += "\t\t</tr>";
 		umDiscussao += "\t</table>";
@@ -72,37 +72,30 @@ public class DiscussaoService {
 		
 		form = form.replaceFirst("<UMA_DISCUSSAO>", umDiscussao);
 		
-		/*String list = new String("<table width=\"80%\" align=\"center\" bgcolor=\"#f3f3f3\">");
-		list += "\n<tr><td colspan=\"6\" align=\"left\"><font size=\"+2\"><b>&nbsp;&nbsp;&nbsp;Relação de Discussaos</b></font></td></tr>\n" +
-				"\n<tr><td colspan=\"6\">&nbsp;</td></tr>\n" +
-    			"\n<tr>\n" + 
-        		"\t<td><a href=\"/produto/list/" + FORM_ORDERBY_ID + "\"><b>ID</b></a></td>\n" +
-        		"\t<td><a href=\"/produto/list/" + "\"><b>Descrição</b></a></td>\n" +
-        		"\t<td><a href=\"/produto/list/" + "\"><b>Preço</b></a></td>\n" +
-        		"\t<td width=\"100\" align=\"center\"><b>Detalhar</b></td>\n" +
-        		"\t<td width=\"100\" align=\"center\"><b>Atualizar</b></td>\n" +
-        		"\t<td width=\"100\" align=\"center\"><b>Excluir</b></td>\n" +
-        		"</tr>\n";
+		
 		
 		List<Discussao> discussoes;
 			discussoes = discussaoDAO.getOrderByID();
 		
-
-		int i = 0;
-		String bgcolor = "";
+			String list = "";
+		
+		
 		for (Discussao p : discussoes) {
-			bgcolor = (i++ % 2 == 0) ? "#fff5dd" : "#dddddd";
-			list += "\n<tr bgcolor=\""+ bgcolor +"\">\n" + 
-            		  "\t<td>" + p.getId() + "</td>\n" +
-            		  "\t<td>" + p.getConteudo() + "</td>\n" +
-            		  "\t<td>" + p.getAutor() + "</td>\n" +
-            		  "\t<td align=\"center\" valign=\"middle\"><a href=\"/produto/" + p.getId() + "\"><img src=\"/image/detail.png\" width=\"20\" height=\"20\"/></a></td>\n" +
-            		  "\t<td align=\"center\" valign=\"middle\"><a href=\"/produto/update/" + p.getId() + "\"><img src=\"/image/update.png\" width=\"20\" height=\"20\"/></a></td>\n" +
-            		  "\t<td align=\"center\" valign=\"middle\"><a href=\"javascript:confirmarDeleteDiscussao('" + p.getId() + "', '" + p.getConteudo() + "', '" + p.getAutor() + "');\"><img src=\"/image/delete.png\" width=\"20\" height=\"20\"/></a></td>\n" +
-            		  "</tr>\n";
+			list += "<div class=\"discTexto\">";
+			
+			list += "\n<h2>" + p.getTitulo() + "</h2>\n" +
+            		  "<p>" + p.getConteudo() + "</p>\n" +
+            		  "<p>" + p.getAutor() + "</p>\n" ;
+			list += "</div>\n";	
+				
 		}
-		list += "</table>";		
-		form = form.replaceFirst("<LISTAR-DISC>", list);	*/			
+		
+		form = form.replaceFirst("<LISTAR-DISC>", list);
+			
+		
+		
+		
+		
 }
 	
 	public Object insert(Request request, Response response) {
