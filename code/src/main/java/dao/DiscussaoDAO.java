@@ -62,7 +62,7 @@ public class DiscussaoDAO extends DAO {
 	}
 	
 	public List<Discussao> getOrderByID() {
-		return get("id");		
+		return get("id DESC");		
 	}
 	
 	private List<Discussao> get(String orderBy) {

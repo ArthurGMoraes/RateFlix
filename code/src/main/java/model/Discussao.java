@@ -43,7 +43,8 @@ public class Discussao implements Serializable {
 	}
 
 	public void setTitulo(String titulo) {
-			this.titulo = titulo;
+		if (titulo.length() >= 2) {
+			this.titulo = titulo;}
 	}
 
 	public String getConteudo() {
@@ -51,8 +52,8 @@ public class Discussao implements Serializable {
 	}
 
 	public void setConteudo(String conteudo) {
-		if (conteudo.length() >= 2)
-			this.conteudo = conteudo;
+		if (conteudo.length() >= 2) {
+			this.conteudo = conteudo;}
 	}
 
 	public String getAutor() {

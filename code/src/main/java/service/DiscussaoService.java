@@ -48,7 +48,7 @@ public class DiscussaoService {
 		
 		String name, titulo, descricao, buttonLabel, action2;
 		
-		action = "/discussao/criar/";
+		action = "/criar";
 		action2 = "/";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
@@ -79,9 +79,12 @@ public class DiscussaoService {
 			discussoes = discussaoDAO.getOrderByID();
 		
 			String list = "";
+			
+			String teste = "null";
 		
 		
 		for (Discussao p : discussoes) {
+			if(!(p.getTitulo().equals(teste)) && !(p.getConteudo().equals(teste))) {
 			list += "<div class=\"discTexto\">";
 			
 			list += "\n<a href=\"/disc/" + p.getId()+ "\" style=\"text-decoration: none; color: whitesmoke;\">"+
@@ -91,6 +94,7 @@ public class DiscussaoService {
             		  "</a>";
 			
 			list += "</div>\n";	
+			}
 				
 		}
 		

@@ -30,7 +30,7 @@ fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
       media_type = produtos.media_type;
       let poster = produtos.poster_path;
       str += `<div class="cards">
-              <a href="../detalhesFilme/detalhesFilmes.html?id=${id}?type=${media_type}">
+              <a href="detalhesFilme/detalhesFilmes.html?id=${id}?type=${media_type}">
                 <img src="https://image.tmdb.org/t/p/w500${poster}">
                 <h5>${title}</h5>
               </a>
@@ -71,40 +71,6 @@ fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
     slides[(slidePosition+2)%20].style.display = "flex";
   } 
   
-  function adicionarNovoCard() {
-    const discussao = document.querySelector('.discussao');
-
-    
-    const novoCard = document.createElement('div');
-    novoCard.classList.add('cardsTexto');
-
-    
-    const titulo = document.createElement('h5');
-    titulo.textContent = "Tópico Teste";
-
-    
-    const descricao = document.createElement('p');
-    descricao.textContent = gerarDescricaoAleatoria();
-
-    
-    novoCard.appendChild(titulo);
-    novoCard.appendChild(descricao);
+  
 
 
-    discussao.insertBefore(novoCard, document.querySelector('.cardsTexto'));
-}
-
-
-const botaoAdicionar = document.getElementById('adicionarCard');
-botaoAdicionar.addEventListener('click', adicionarNovoCard);
-
-
-function gerarDescricaoAleatoria() {
-    const descricao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in justo eu justo commodo tristique. Nulla facilisi. ";
-    return descricao.repeat(3); 
-}
-
-let atualizar = document.getElementById("atualizar");
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-});

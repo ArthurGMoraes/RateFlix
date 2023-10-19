@@ -58,6 +58,31 @@ ALTER TABLE ONLY public.discussao
     ADD CONSTRAINT discussao_pkey PRIMARY KEY (id);
 
 
+
+--
+-- Name: filme; Type: TABLE; Schema: public; Owner: ti2cc
+--
+
+CREATE TABLE public.filme (
+    id integer,
+    titulo text,
+    descricao text,
+    tipo text,
+    avaliacao integer,
+    data text
+);
+
+
+ALTER TABLE public.filme OWNER TO ti2cc;
+
+--
+-- Name: filme discussao_pkey; Type: CONSTRAINT; Schema: public; Owner: ti2cc
+--
+
+ALTER TABLE ONLY public.filme
+    ADD CONSTRAINT filme_pkey PRIMARY KEY (id);
+
+
 --
 -- PostgreSQL database dump complete
 --    
