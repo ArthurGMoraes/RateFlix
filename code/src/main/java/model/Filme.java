@@ -7,6 +7,7 @@ public class Filme  {
 	private String titulo;
 	private String descricao;
 	private String tipo;
+	private String poster;
 	private String data;
 	private int avaliacao;
 	

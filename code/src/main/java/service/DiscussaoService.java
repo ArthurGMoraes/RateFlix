@@ -3,20 +3,29 @@ package service;
 import java.util.Scanner;
 
 import java.io.File;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
+
 import java.util.List;
 import dao.DiscussaoDAO;
+//import dao.FilmeDAO;
 import model.Discussao;
+import model.Filme;
 import spark.Request;
 import spark.Response;
-import model.Discussao;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 
 
 public class DiscussaoService {
 
 	private DiscussaoDAO discussaoDAO = new DiscussaoDAO();
+	//private FilmeDAO filmeDAO = new filmeDAO();
 	private String form;
 	private String form2;
 	private final int FORM_INSERT = 1;
@@ -128,13 +137,14 @@ public class DiscussaoService {
 		return form.replaceFirst("<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">", "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">");
 	}
 	
-	/*public void makeForm(int orderBy) {
-		makeForm(FORM_INSERT, new Discussao(), orderBy);
+	/*public Object salvarFilmes() {
+		
 	}*/
 	
 	public Object getAll(Request request, Response response) {
 	
 		makeForm();
+		//salvarFilmes();
 	    response.header("Content-Type", "text/html");
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
