@@ -13,20 +13,14 @@ public class Filme  {
 	
 	public Filme() {
 		id = -1;
-		titulo = "nao definido";
-		descricao = "nao definido";
 		tipo = "nao definido";
-		data = "nao definido";
 		avaliacao = -1;
 	}
 
-	public Filme(int id, String titulo, int avaliacao, String data) {
+	public Filme(int id, String tipo, int avaliacao) {
 		setId(id);
-		setTitulo(titulo);
 		setAvaliacao(avaliacao);
-	
-		
-		setData(data);
+		setTipo(tipo);
 	}		
 	
 	public int getId() {
@@ -46,24 +40,14 @@ public class Filme  {
 	}
 
 	
-	public String getTitulo() {
-		return titulo;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setTitulo(String titulo) {
-		if (titulo.length() >= 2) {
-			this.titulo = titulo;}
+	public void setTipo(String tipo) {
+			this.tipo = tipo;
 	}
 
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-	
 
 
 

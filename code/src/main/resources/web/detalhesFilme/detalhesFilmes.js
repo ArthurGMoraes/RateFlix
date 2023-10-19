@@ -1,4 +1,4 @@
-var url = document.URL;
+/*var url = document.URL;
 
 var url_params = url.split('?id=') 
 var params = url_params[url_params.length-1];
@@ -59,4 +59,4 @@ const options = {
   }
 
 
-  criarPagina();
+  //criarPagina();*/

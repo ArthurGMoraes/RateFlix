@@ -69,7 +69,8 @@ CREATE TABLE public.filme (
     descricao text,
     tipo text,
     avaliacao integer,
-    data text
+    data text,
+    poster text
 );
 
 
@@ -82,6 +83,27 @@ ALTER TABLE public.filme OWNER TO ti2cc;
 ALTER TABLE ONLY public.filme
     ADD CONSTRAINT filme_pkey PRIMARY KEY (id);
 
+
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: ti2cc
+--
+
+CREATE TABLE public.usuario (
+    id integer DEFAULT nextval('public."id-usuario"'::regclass) NOT NULL,
+    nome text,
+    senha text
+);
+
+
+ALTER TABLE public.usuario OWNER TO ti2cc;
+
+--
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: ti2cc
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id);
 
 --
 -- PostgreSQL database dump complete

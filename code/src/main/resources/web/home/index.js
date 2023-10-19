@@ -7,7 +7,7 @@ const options = {
   };
 
 
-fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+fetch('https://api.themoviedb.org/3/trending/all/day?language=pt-BR', options)
   .then(res => res.json())
   .then(data => {
     console.log(data);
@@ -30,7 +30,7 @@ fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
       media_type = produtos.media_type;
       let poster = produtos.poster_path;
       str += `<div class="cards">
-              <a href="detalhesFilme/detalhesFilmes.html?id=${id}?type=${media_type}">
+              <a href="/detalhes/${id}/${media_type}">
                 <img src="https://image.tmdb.org/t/p/w500${poster}">
                 <h5>${title}</h5>
               </a>

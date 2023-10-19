@@ -7,7 +7,7 @@ import java.io.File;
 
 import java.util.List;
 import dao.DiscussaoDAO;
-//import dao.FilmeDAO;
+import dao.FilmeDAO;
 import model.Discussao;
 import model.Filme;
 import spark.Request;
@@ -25,7 +25,7 @@ import java.net.URL;
 public class DiscussaoService {
 
 	private DiscussaoDAO discussaoDAO = new DiscussaoDAO();
-	//private FilmeDAO filmeDAO = new filmeDAO();
+	private FilmeDAO filmeDAO = new FilmeDAO();
 	private String form;
 	private String form2;
 	private final int FORM_INSERT = 1;
@@ -137,14 +137,11 @@ public class DiscussaoService {
 		return form.replaceFirst("<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">", "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">");
 	}
 	
-	/*public Object salvarFilmes() {
-		
-	}*/
+	
 	
 	public Object getAll(Request request, Response response) {
 	
 		makeForm();
-		//salvarFilmes();
 	    response.header("Content-Type", "text/html");
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
