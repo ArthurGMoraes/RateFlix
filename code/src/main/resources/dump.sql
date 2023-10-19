@@ -59,32 +59,13 @@ ALTER TABLE ONLY public.discussao
 
 
 
---
--- Name: filme; Type: TABLE; Schema: public; Owner: ti2cc
---
 
-CREATE TABLE public.filme (
-    id integer,
-    titulo text,
-    descricao text,
-    tipo text,
-    avaliacao integer,
-    data text,
-    poster text
-);
-
-
-ALTER TABLE public.filme OWNER TO ti2cc;
-
---
--- Name: filme discussao_pkey; Type: CONSTRAINT; Schema: public; Owner: ti2cc
---
-
-ALTER TABLE ONLY public.filme
-    ADD CONSTRAINT filme_pkey PRIMARY KEY (id);
-
-
-
+CREATE SEQUENCE public."id-usuario"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    MAXVALUE 1000000
+    CACHE 1;
 --
 -- Name: usuario; Type: TABLE; Schema: public; Owner: ti2cc
 --
