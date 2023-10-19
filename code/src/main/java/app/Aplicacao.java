@@ -17,8 +17,10 @@ public class Aplicacao {
         //get("/", (request, response) -> site.Service.gerar(resquest, response));
         
         post("/discussao/criar/", (request, response) -> discussaoService.insert(request, response));
+        
 
         get("/", (request, response) -> discussaoService.getAll(request, response));
+        get("/disc/:id", (request, response) -> discussaoService.getDisc(request, response));
         
         
 

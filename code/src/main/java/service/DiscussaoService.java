@@ -18,6 +18,7 @@ public class DiscussaoService {
 
 	private DiscussaoDAO discussaoDAO = new DiscussaoDAO();
 	private String form;
+	private String form2;
 	private final int FORM_INSERT = 1;
 	private final int FORM_ORDERBY_ID = 1;
 	
@@ -83,9 +84,12 @@ public class DiscussaoService {
 		for (Discussao p : discussoes) {
 			list += "<div class=\"discTexto\">";
 			
-			list += "\n<h2>" + p.getTitulo() + "</h2>\n" +
+			list += "\n<a href=\"/disc/" + p.getId()+ "\" style=\"text-decoration: none; color: whitesmoke;\">"+
+					"\n<h2>" + p.getTitulo() + "</h2>\n" +
             		  "<p>" + p.getConteudo() + "</p>\n" +
-            		  "<p>" + p.getAutor() + "</p>\n" ;
+            		  "<p>" + p.getAutor() + "</p>\n" +
+            		  "</a>";
+			
 			list += "</div>\n";	
 				
 		}
@@ -131,5 +135,37 @@ public class DiscussaoService {
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
 	}
+	
+	
+	public void makeDisc(Discussao disc) {
+		String nomeArquivo = "src/main/resources/web/discussao/disc.html";
+		form2 = "";
+		
+		try{
+			Scanner entrada = new Scanner(new File(nomeArquivo));
+		    while(entrada.hasNext()){
+		    	form2 += (entrada.nextLine() + "\n");
+		    }
+		    entrada.close();
+		}  catch (Exception e) { System.out.println(e.getMessage()); }
+		
+		String teste = "";
+		teste += "<p>" + disc.getConteudo() + "</p>";
+		
+		form2 = form2.replaceFirst("<TESTE>", teste);
+		
+		
+		
+	}
+	
+	public Object getDisc(Request request, Response response) {
+		int id = Integer.parseInt(request.params(":id"));
+		Discussao disc = (Discussao) discussaoDAO.get(id);
+		makeDisc(disc);
+	    response.header("Content-Type", "text/html");
+	    response.header("Content-Encoding", "UTF-8");
+		return form2;
+	}
+	
 	
 }

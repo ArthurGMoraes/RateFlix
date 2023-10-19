@@ -103,3 +103,8 @@ function gerarDescricaoAleatoria() {
     const descricao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in justo eu justo commodo tristique. Nulla facilisi. ";
     return descricao.repeat(3); 
 }
+
+let atualizar = document.getElementById("atualizar");
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
