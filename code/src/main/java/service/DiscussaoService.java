@@ -25,7 +25,7 @@ import java.net.URL;
 public class DiscussaoService {
 
 	private DiscussaoDAO discussaoDAO = new DiscussaoDAO();
-	private FilmeDAO filmeDAO = new FilmeDAO();
+	//private FilmeDAO filmeDAO = new FilmeDAO();
 	private String form;
 	private String form2;
 	private final int FORM_INSERT = 1;
