@@ -86,6 +86,27 @@ ALTER TABLE public.usuario OWNER TO ti2cc;
 ALTER TABLE ONLY public.usuario
     ADD CONSTRAINT usuario_pkey PRIMARY KEY (id);
 
+
+--
+-- Name: avaliacao; Type: TABLE; Schema: public; Owner: ti2cc
+--
+
+CREATE TABLE public.avaliacao (
+    id integer,
+    valor integer,
+    id_usr integer
+);
+
+
+ALTER TABLE public.avaliacao OWNER TO ti2cc;
+
+--
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: ti2cc
+--
+
+ALTER TABLE ONLY public.avaliacao
+    ADD CONSTRAINT avaliacao_pkey PRIMARY KEY (id);
+
 --
 -- PostgreSQL database dump complete
 --    
