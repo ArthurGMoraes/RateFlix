@@ -30,7 +30,8 @@ public class AvaliacaoDAO extends DAO {
 		boolean status = false;
 		try {
 			String sql = "INSERT INTO avaliacao (valor, id_usr) "
-		               + "VALUES (" + avaliacao.getValor() + ", " + avaliacao.getId_usr() + ");";
+		               + "VALUES ("
+		               + avaliacao.getValor() + ", " + avaliacao.getId_usr() + ");";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();

@@ -83,18 +83,4 @@ public class DiscussaoDAO extends DAO {
 		}
 		return discussoes;
 	}
-	
-	
-	public boolean delete(int id) {
-		boolean status = false;
-		try {  
-			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM discussao WHERE id = " + id);
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
-	}
 }

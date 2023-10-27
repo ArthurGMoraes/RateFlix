@@ -3,7 +3,6 @@ package app;
 import static spark.Spark.*;
 import service.DiscussaoService;
 import service.FilmeService;
-
 //import service.AvaliacaoService;
 
 
@@ -22,12 +21,10 @@ public class Aplicacao {
         //get("/", (request, response) -> site.Service.gerar(resquest, response));
         post("/avaliar", (request, response) -> filmeService.insert(request, response));
         post("/criar", (request, response) -> discussaoService.insert(request, response));
-        post("/criarResp", (request, response) -> discussaoService.insertResp(request, response));
         
         get("/", (request, response) -> discussaoService.getAll(request, response));
         get("/detalhes/:id/:type", (request, response) -> filmeService.makeFilme(request, response));
-        get("/delete/:id", (request, response) -> discussaoService.delete(request, response));
-        get("/deleteResp/:id", (request, response) -> discussaoService.deleteResp(request, response));
+       // get("/pesq", (request, response) -> filmeService.getPesq(request, response));
        
         get("/disc/:id", (request, response) -> discussaoService.getDisc(request, response));
         

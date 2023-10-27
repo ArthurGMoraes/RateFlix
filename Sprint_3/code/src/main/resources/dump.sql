@@ -113,29 +113,6 @@ ALTER TABLE public.avaliacao OWNER TO ti2cc;
 
 ALTER TABLE ONLY public.avaliacao
     ADD CONSTRAINT avaliacao_pkey PRIMARY KEY (id);
-    
-    
-    
-   CREATE SEQUENCE public."id-resp"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    MAXVALUE 1000000
-    CACHE 1;
-
-
---
--- Name: resp; Type: TABLE; Schema: public; Owner: ti2cc
---
-
-CREATE TABLE public.resp (
-    id integer DEFAULT nextval('public."id-resp"'::regclass) NOT NULL,
-    conteudo text,
-    id_disc integer
-);
-
-
-ALTER TABLE public.resp OWNER TO ti2cc;
 
 --
 -- PostgreSQL database dump complete

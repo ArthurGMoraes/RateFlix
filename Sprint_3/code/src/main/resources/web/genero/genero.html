@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="..\public\style.css" rel="stylesheet">
+    <link href="genero.css" rel="stylesheet">
+    <script src="genero.js"></script>
+    <script src="../public/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>moviemetr</title>
+</head>
+<body>
+    <header>
+        <div class="headerIcons">
+            <a href="../home/index.html"><img class="logo" src="..\public\logo.png" ></a>
+            <div class="dropdown">
+                <button class="dropdown-button">Selecionar por gênero:</button>
+                <div class="dropdown-content">
+                    <ul>
+                        <button class="clickFilme" onclick="toggleClassFilme()">Filmes ></button>
+                            <ul class="dropFilmes">
+                                <a href="../genero/genero.html?genero=28?type=movie">Ação</a>
+                                <a href="../genero/genero.html?genero=16?type=movie">Animação</a>
+                                <a href="../genero/genero.html?genero=35?type=movie">Comédia</a>
+                                <a href="../genero/genero.html?genero=80?type=movie">Crime</a>
+                                <a href="../genero/genero.html?genero=99?type=movie">Documentário</a>
+                                <a href="../genero/genero.html?genero=18?type=movie">Drama</a>
+                                <a href="../genero/genero.html?genero=14?type=movie">Fantasia</a>
+                                <a href="../genero/genero.html?genero=36?type=movie">História</a>
+                                <a href="../genero/genero.html?genero=9648?type=movie">Mistério</a>
+                                <a href="../genero/genero.html?genero=10749?type=movie">Romance</a>
+                                <a href="../genero/genero.html?genero=878?type=movie">Ficção Científica</a>
+                                <a href="../genero/genero.html?genero=53?type=movie">Suspense</a>
+                                <a href="../genero/genero.html?genero=27?type=movie">Terror</a>
+                            </ul>
+
+                            
+    
+                            <button class="clickSerie" onclick="toggleClassSerie()">Séries ></button>
+                            <ul class="dropSeries">
+                                <a href="../genero/genero.html?genero=10759?type=tv">Ação e aventura</a>
+                                <a href="../genero/genero.html?genero=16?type=tv">Animação</a>
+                                <a href="../genero/genero.html?genero=35?type=tv">Comédia</a>
+                                <a href="../genero/genero.html?genero=80?type=tv">Crime</a>
+                                <a href="../genero/genero.html?genero=99?type=tv">Documentário</a>
+                                <a href="../genero/genero.html?genero=18?type=tv">Drama</a>
+                                <a href="../genero/genero.html?genero=10762?type=tv">Para crianças</a>
+                                <a href="../genero/genero.html?genero=9648?type=tv">Mistério</a>
+                                <a href="../genero/genero.html?genero=10765?type=tv">Ficção Científica e fantásia</a>
+                                <a href="../genero/genero.html?genero=10764?type=tv">Reality</a>
+                                <a href="../genero/genero.html?genero=10768?type=tv">Política</a>
+                            </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="search-container">
+                
+                <input id="searchInput" type="text" placeholder="Pesquisar" name="search">
+                <button id="searchButton" onclick="TESTE()"><i class="fa fa-search"></i></button>
+              
+          </div>
+            
+          <a href="../perfil/perfil.html" class="profileLink"><img class="profile" src="..\public\profile.png"></a>
+        </div>              
+    </header>
+
+    <main>
+        
+        <div id="tela"></div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

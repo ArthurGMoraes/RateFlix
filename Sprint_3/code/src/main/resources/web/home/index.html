@@ -12,13 +12,11 @@
 </head>
 <script type="text/javascript">
 
-
-
-function confirmarDeleteDiscussao(id) {  
-	console.out("chamou");
- 
-        location.href = '/delete/' + id;
-        
+function confirmarDeleteDiscussao(id, descricao, preco) {  
+	
+    if (confirm('Confirmar a exclusão do produto [' + descricao + '] (ID ' + id + ') com preço R$ ' + preco)) {  
+        location.href = '/produto/delete/' + id;
+    }
 }
 function onLoad() {
     if(document.getElementById("msg").value != ""){

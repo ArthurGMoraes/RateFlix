@@ -1,6 +1,6 @@
 package dao;
 
-import model.Avaliacao;
+import model.Resp;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AvaliacaoDAO extends DAO {	
-	public AvaliacaoDAO() {
+public class RespDAO extends DAO {	
+	public RespDAO() {
 		super();
 		conectar();
 	}
@@ -26,11 +26,11 @@ public class AvaliacaoDAO extends DAO {
      * ### CREATE
      */
 
-	public boolean insert(Avaliacao avaliacao) {
+	public boolean insert(Resp resp) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO avaliacao (valor, id_usr) "
-		               + "VALUES (" + avaliacao.getValor() + ", " + avaliacao.getId_usr() + ");";
+			String sql = "INSERT INTO resp (conteudo, id_disc) "
+		               + "VALUES ('"+ resp.getValor() + "', " + resp.getId_disc() + ");";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -45,66 +45,66 @@ public class AvaliacaoDAO extends DAO {
      *  RETRIEVE
      */
 	
-	public Avaliacao get(int id) {
-		Avaliacao avaliacao = null;
+	public Resp get(int id) {
+		Resp resp = null;
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM avaliacao WHERE id="+id;
+			String sql = "SELECT * FROM resp WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"));
+	        	 resp = new Resp(rs.getInt("id"), rs.getString("conteudo"),  rs.getInt("id_disc"));
 	        }
 	        st.close();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return avaliacao;
+		return resp;
 	}
 	
-	public List<Avaliacao> get() {
+	public List<Resp> get() {
 		return get("");
 	}
 	
-	public List<Avaliacao> getOrderByID() {
+	public List<Resp> getOrderByID() {
 		return get("id");		
 	}
 
-    public List<Avaliacao> getOrderByValor() {
+    public List<Resp> getOrderByValor() {
 		return get("valor");		
 	}
 
-    public List<Avaliacao> getOrderByIDusr() {
-		return get("id_usr");		
+    public List<Resp> getOrderByIDdisc() {
+		return get("id_disc");		
 	}
 	
-	private List<Avaliacao> get(String orderBy) {
-		List<Avaliacao> discussoes = new ArrayList<Avaliacao>();
+	private List<Resp> get(String orderBy) {
+		List<Resp> resps = new ArrayList<Resp>();
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM avaliacao" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+			String sql = "SELECT * FROM resp" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Avaliacao p = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"));
-	            discussoes.add(p);
+	            Resp p = new Resp(rs.getInt("id"), rs.getString("conteudo"),  rs.getInt("id_disc"));
+	            resps.add(p);
 	        }
 	        st.close();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return discussoes;
+		return resps;
 	}
 
     /*
      * ### UPDATE
      */
 
-     public boolean update(Avaliacao avaliacao) {
+     public boolean update(Resp resp) {
 		boolean status = false;
 		try {  
-			String sql = "UPDATE avaliacao SET valor = " + avaliacao.getValor() + ", "
-					   + "id_usr = " + avaliacao.getId_usr() + " WHERE id = " + avaliacao.getId();
+			String sql = "UPDATE resp SET valor = " + resp.getValor() + ", "
+					   + "id_disc = " + resp.getId_disc() + " WHERE id = " + resp.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -122,7 +122,7 @@ public class AvaliacaoDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM avaliacao WHERE id = " + id);
+			st.executeUpdate("DELETE FROM resp WHERE id = " + id);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  

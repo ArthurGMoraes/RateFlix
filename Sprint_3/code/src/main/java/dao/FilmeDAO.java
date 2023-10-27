@@ -1,18 +1,20 @@
 package dao;
 
 import model.Discussao;
+import model.Filme;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DiscussaoDAO extends DAO {	
-	public DiscussaoDAO() {
+public class FilmeDAO extends DAO {	
+	public FilmeDAO() {
 		super();
 		conectar();
 	}
@@ -23,41 +25,45 @@ public class DiscussaoDAO extends DAO {
 	}
 	
 	
-	public boolean insert(Discussao discussao) {
+	public boolean insert(Filme filme) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO discussao (titulo, conteudo, autor, curtidas, data) "
-		               + "VALUES ('"+ discussao.getTitulo() + "', '"
-		               + discussao.getConteudo() + "', '" + discussao.getAutor() + "', '" + discussao.getCurtidas() + "', '" + discussao.getData() + "');";
-			PreparedStatement st = conexao.prepareStatement(sql);
-			st.executeUpdate();
-			st.close();
-			status = true;
+			String sql = "INSERT INTO filme (id, tipo, avaliacao) "
+	                + "VALUES (?, ?, ?)";
+	        PreparedStatement st = conexao.prepareStatement(sql);
+	        st.setInt(1, filme.getId());            
+	        st.setString(2, filme.getTipo());
+	        st.setInt(3, filme.getAvaliacao());   
+
+	        st.executeUpdate();
+	        st.close();
+	        status = true;
 		} catch (SQLException u) {  
 			throw new RuntimeException(u);
 		}
 		return status;
 	}
 	
-	public Discussao get(int id) {
-		Discussao discussao = null;
+	
+	public Filme get(int id) {
+		Filme filme = null;
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM discussao WHERE id="+id;
+			String sql = "SELECT * FROM filme WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 discussao = new Discussao(rs.getInt("id"), rs.getString("titulo"),  rs.getString("conteudo"),  
-		        			rs.getString("autor"), rs.getInt("curtidas"), rs.getString("data"));
+	        	 filme = new Filme(rs.getInt("id"),
+		        			rs.getString("tipo"), rs.getInt("avaliacao"));
 	        }
 	        st.close();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return discussao;
+		return filme;
 	}
 	
-	public List<Discussao> get() {
+	/*public List<Filme> get() {
 		return get("");
 	}
 	
@@ -82,19 +88,5 @@ public class DiscussaoDAO extends DAO {
 			System.err.println(e.getMessage());
 		}
 		return discussoes;
-	}
-	
-	
-	public boolean delete(int id) {
-		boolean status = false;
-		try {  
-			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM discussao WHERE id = " + id);
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
-	}
-}
+	}*/
+} 

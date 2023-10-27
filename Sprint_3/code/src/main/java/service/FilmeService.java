@@ -29,7 +29,7 @@ import java.net.URL;
 public class FilmeService {
 
 	private final DecimalFormat df = new DecimalFormat("0.00");
-	//private FilmeDAO filmeDAO = new FilmeDAO();
+	private FilmeDAO filmeDAO = new FilmeDAO();
 	private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
 	//private AvaliacaoService avaliacao = new AvaliacaoService();
 	private String form3;
