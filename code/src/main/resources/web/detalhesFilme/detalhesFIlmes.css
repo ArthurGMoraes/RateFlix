@@ -22,3 +22,93 @@
     margin-top: 0;
     margin-left: 20px;
 }
+
+/* Avaliações */
+
+.label {
+    width: 120px; 
+    font-weight: bold;
+  }
+
+.Written-box
+{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.shadowed{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.gridStyle{
+    background-color: orange;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: flex-start; /* Vertically center */
+}
+
+.imgPerfil-img {
+    margin: 25px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%; 
+    border: black solid 4px;
+}
+
+.avaliacaoContainer
+{
+    margin: 30px;
+    background-color: #303030;
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.avaliacaoUnique
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    background-color: whitesmoke;
+    border-radius: 25px;
+}
+
+.avaliacaoLeft
+{
+    width: auto; /* Set width to auto to occupy the necessary space */
+    background-color: orange;
+    border-top-left-radius: 25px; /* Circular top-left corner */
+    border-bottom-left-radius: 25px; /* Circular bottom-left corner */
+    overflow: hidden;
+}
+
+.avaliacaoContainer .boxTitle
+{
+    display: block; 
+    width: 100%; 
+    padding: 7px 0px;
+    text-align: center;
+    background-color: black;
+    color: whitesmoke;
+}
+
+.post-button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.post-button:hover {
+    background-color: darkgreen;
+}
+
+
+.avaliacao{
+display:flex;
+}
+#aval {
+color: whitesmoke;
+}

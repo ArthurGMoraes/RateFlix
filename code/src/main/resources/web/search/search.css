@@ -1,0 +1,186 @@
+#tela_roleta {
+    max-width: 1300px;
+    margin: auto;
+    position: relative;
+}
+
+.results {
+    display: flex;
+    overflow: hidden;
+    
+    margin-top: 0;
+}
+
+.cards {
+    background-color: rgba(255,255,255,0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255, 0.1);
+    box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+    height: 495px;
+    width: 290px;
+    margin: 10px;
+    display: flex;
+    
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 0 0 8px 8px;
+    margin-top:0;
+    
+}
+.cardsTexto {
+  background-color: rgba(255,255,255,0.13);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255, 0.1);
+  box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+  height: 295px;
+  width: 450px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 0 0 8px 8px;
+  margin-top:0;
+  overflow: auto;
+}
+
+.cards h5{
+    color: whitesmoke;
+}
+
+
+.cards img{
+    height: 412.5px;
+    width: 275px;
+    
+}
+
+.Back, .forward {
+    cursor: pointer;
+    position: absolute;
+    top: 48%;
+    width: auto;
+    margin-top: -23px;
+    padding: 17px;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    transition: 0.4s ease;
+    border-radius: 4px;
+    user-select: none;
+    
+  }
+  
+  .forward {
+    right: 0;
+  }
+  
+  .Back:hover, .forward:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .discussao{
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    
+  }
+  .cardbutao
+  {
+  margin: 30px;
+  border-radius:5px;
+  background-color: rgb(206, 137, 9);
+  }
+  
+  .discTexto{
+    background-color: rgba(255,255,255,0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255, 0.1);
+    box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+    height: 295px;
+    max-width: 450px;
+    min-width: 300px;
+    margin: 10px;
+    display: grid;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 0 0 8px 8px;
+    margin-top:0;
+    overflow: auto;
+  }
+
+
+  .trending{
+    text-align: left;
+    margin-left:60px;
+  }
+
+
+  @media (max-width: 1280px){
+    #tela_roleta{
+        width: 100%;
+    }
+    .roleta{
+        overflow-x: auto;
+    }
+
+    .Back, .forward{
+        display: none;
+    }
+
+    .Back:hover, .forward:hover {
+        display: none;
+    }
+  }
+
+  @media (max-width: 1265px){
+    .trending{
+        margin-left: 30px;
+    }
+  }
+
+  @media (max-width: 1260px){
+    .trending{
+        margin-left: 35px;
+    }
+  }
+
+
+
+  @media (max-width: 1215px){
+    .trending{
+        margin-left: 20px;
+    }
+  }
+
+
+  @media (max-width: 555px){
+    .cards img{
+        height: 345px;
+        width: 230px;
+        
+    }
+
+    .cards {
+        background-color: rgba(255,255,255,0.13);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255, 0.1);
+        box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+        height: 427px;
+        width: 240px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 0 0 8px 8px;
+        
+    }
+  }

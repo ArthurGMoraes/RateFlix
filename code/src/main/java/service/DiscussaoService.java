@@ -161,7 +161,8 @@ public class DiscussaoService {
 		}  catch (Exception e) { System.out.println(e.getMessage()); }
 		
 		String teste = "";
-		teste += "<p>" + disc.getConteudo() + "</p>";
+		teste +="<h1>" +disc.getTitulo() + "</h1>" +
+				"\n<p>" + disc.getConteudo() + "</p>";
 		
 		form2 = form2.replaceFirst("<TESTE>", teste);
 		

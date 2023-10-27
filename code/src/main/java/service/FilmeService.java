@@ -6,13 +6,19 @@ import java.io.File;
 
 
 import java.util.List;
+
+import dao.AvaliacaoDAO;
 import dao.FilmeDAO;
+import model.Avaliacao;
+import model.Discussao;
 import model.Filme;
+//import service.AvaliacaoService;
 import spark.Request;
 import spark.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.text.DecimalFormat;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,28 +28,48 @@ import java.net.URL;
 
 public class FilmeService {
 
+	private final DecimalFormat df = new DecimalFormat("0.00");
 	private FilmeDAO filmeDAO = new FilmeDAO();
-	private String form;
+	private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
+	//private AvaliacaoService avaliacao = new AvaliacaoService();
 	private String form3;
+	private int testeId;
+	private String testeType;
+	private String testeForm;
 	private final int FORM_INSERT = 1;
 	private final int FORM_ORDERBY_ID = 1;
 	
 	
 	public Object makeFilme(Request request, Response response) {
-		int id = Integer.parseInt(request.params(":id"));
-		String type = (request.params(":type"));
+		int id = 0;
+		String type = "";
+		System.out.println("passou1");
+		if((request.params(":id") ==null ) ){
+		 id = testeId;
+		 type = testeType;
+		} else {
+		 id = testeId= Integer.parseInt(request.params(":id"));
+		 type =testeType= (request.params(":type"));
+		}
+		System.out.println(testeType + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
 		String dados [] = getFilmebyId(id, type);
 		
 		String nomeArquivo = "src/main/resources/web/detalhesFilme/detalhesFilmes.html";
 		form3 = "";
-		
+		if(!(request.params(":id") ==null ) ){
 		try{
 			Scanner entrada = new Scanner(new File(nomeArquivo));
-		    while(entrada.hasNext()){
-		    	form3 += (entrada.nextLine() + "\n");
-		    }
+				while(entrada.hasNext()){
+			    	form3 += (entrada.nextLine() + "\n");
+			    }
+				testeForm = form3;
+			
 		    entrada.close();
 		}  catch (Exception e) { System.out.println(e.getMessage()); }
+		} else {
+				form3 = testeForm;
+		}
 		
 		String teste = "";
 		teste += "<div id=\"tela\">"+
@@ -54,14 +80,17 @@ public class FilmeService {
         "\n</div>"+
         "\n</div>";
 		
-		//System.out.println(form3);
-		//System.out.println(teste);
+		System.out.println(form3);
+		System.out.println("passou" );
 		//String busca = "<TESTE>";
 		
+		
+		
 		form3 = form3.replaceFirst("<bala>", teste);
+		
 		response.header("Content-Type", "text/html");
 	    response.header("Content-Encoding", "UTF-8");
-		return form3;
+		return makeForm(request, response);
 		
 	}
 	
@@ -132,7 +161,107 @@ public class FilmeService {
 
 	
 	
+	public Object makeForm(Request request, Response response) {
+		return makeForm(FORM_INSERT, new Discussao(), FORM_ORDERBY_ID, request, response);
+	}
+
+	public Object makeForm(int tipo, Discussao discussao, int order, Request request, Response response) {
+		
+		
+		
+		String umDiscussao = "";
+		String action = "";
+		
+		String name, titulo, descricao, buttonLabel, action2;
+		
+		action = "/avaliar";
+		action2 = "/";
+		name = "Avaliar";
+		titulo = "Avaliacao";
+		descricao = "Conteúdo";
+		buttonLabel = "Criar";
+
+		umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"atualizar\">";
+		umDiscussao += "\t<table width=\"10%\" bgcolor=\"#00000\" align=\"center\">";
+		umDiscussao += "\t\t<tr>";
+		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\"><font size=\"+2\"><b id=\"aval\">&nbsp;&nbsp;&nbsp;" + name + "</b></font></td>";
+		umDiscussao += "\t\t</tr>";
+		umDiscussao += "\t\t<tr>";
+		umDiscussao += "\t\t</tr>";
+		umDiscussao += "\t\t<tr>";
+		umDiscussao += "\t\t\t<td>&nbsp; <input class=\"input--register\" type=\"text\" name=\"aval\" placeholder=\"Avaliar\" value=\"" +"\"></td>";
+		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
+		umDiscussao += "\t\t</tr>";
+		umDiscussao += "\t</table>";
+		umDiscussao += "\t</form>";	
+		
+		form3 = form3.replaceFirst("<TESTE>", umDiscussao);
+		//System.out.println(form3);
+		
+		
+		
+		List<Avaliacao> avaliacoes;
+			avaliacoes = avaliacaoDAO.getOrderByID();
+		
+			String list = "";
+			
+			double soma = 0.0;
+			int count = 0;
+		    int val;
+			int id = testeId;
+			for (Avaliacao p : avaliacoes) {
+				val = p.getId_usr();
+				if(val == id) {
+					soma += (double)p.getValor();
+					count++;
+					System.out.println(soma + "AAAAAAAA" + count);
+			}
+				
+			}
+			if (count == 0) {
+				count = 1;}
+			double result = soma/count;
+			list = "<h2>"+ df.format(result) + "</h2>";
+		
+		form3 = form3.replaceFirst("<resp>", list);
+			
+		
+		
+		return form3;
+		
+}
 	
+	
+	public Object insert(Request request, Response response) {
+		int titulo = Integer.parseInt(request.queryParams("aval"));
+
+		//int autor = 0;
+		
+		Avaliacao avaliacao = new Avaliacao(-1, titulo, testeId);
+		
+		String resp = "";
+		
+		if(avaliacaoDAO.insert(avaliacao) == true) {
+			resp = "Discussao" +"( "  + titulo + " )" + "inserido!";
+            response.status(201); // 201 Created
+		} else {
+			resp = "Discussao" +"( "  + titulo + " )" + "não inserido!";
+			response.status(404); // 404 Not found
+		}
+			
+		makeFilme(request, response);
+		return form3;
+	}
+	
+	
+	
+	public Object getAll(Request request, Response response) {
+	
+		makeFilme(request, response);
+	    response.header("Content-Type", "text/html");
+	    response.header("Content-Encoding", "UTF-8");
+		return form3;
+	}
 	
 	
 	
