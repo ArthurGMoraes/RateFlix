@@ -51,7 +51,7 @@ public class FilmeService {
 		 id = testeId= Integer.parseInt(request.params(":id"));
 		 type =testeType= (request.params(":type"));
 		}
-		System.out.println(testeType + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		//System.out.println(testeType + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		
 		String dados [] = getFilmebyId(id, type);
 		
@@ -166,74 +166,76 @@ public class FilmeService {
 	}
 
 	public Object makeForm(int tipo, Discussao discussao, int order, Request request, Response response) {
-		
-		
-		
-		String umDiscussao = "";
-		String action = "";
-		
-		String name, titulo, descricao, buttonLabel, action2;
-		
-		action = "/avaliar";
-		action2 = "/";
-		name = "Avaliar";
-		titulo = "Avaliacao";
-		descricao = "Conteúdo";
-		buttonLabel = "Criar";
+	    String umDiscussao = "";
+	    String action = "";
+	    String name, buttonLabel;
 
-		umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"atualizar\">";
-		umDiscussao += "\t<table width=\"10%\" bgcolor=\"#00000\" align=\"center\">";
-		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\"><font size=\"+2\"><b id=\"aval\">&nbsp;&nbsp;&nbsp;" + name + "</b></font></td>";
-		umDiscussao += "\t\t</tr>";
-		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t</tr>";
-		umDiscussao += "\t\t<tr>";
-		umDiscussao += "\t\t\t<td>&nbsp; <input class=\"input--register\" type=\"text\" name=\"aval\" placeholder=\"Avaliar\" value=\"" +"\"></td>";
-		umDiscussao += "\t\t\t<td align=\"center\"><input type=\"submit\" value=\""+ buttonLabel +"\" class=\"input--main__style input--button\"></td>";
-		umDiscussao += "\t\t</tr>";
-		umDiscussao += "\t</table>";
-		umDiscussao += "\t</form>";	
-		
-		form3 = form3.replaceFirst("<TESTE>", umDiscussao);
-		//System.out.println(form3);
-		
-		
-		
-		List<Avaliacao> avaliacoes;
-			avaliacoes = avaliacaoDAO.getOrderByID();
-		
-			String list = "";
-			
-			double soma = 0.0;
-			int count = 0;
-		    int val;
-			int id = testeId;
-			for (Avaliacao p : avaliacoes) {
-				val = p.getId_usr();
-				if(val == id) {
-					soma += (double)p.getValor();
-					count++;
-					System.out.println(soma + "AAAAAAAA" + count);
-			}
-				
-			}
-			if (count == 0) {
-				count = 1;}
-			double result = soma/count;
-			list = "<h2>"+ df.format(result) + "</h2>";
-		
-		form3 = form3.replaceFirst("<resp>", list);
-			
-		
-		
-		return form3;
-		
-}
+	    action = "/avaliar";
+	    name = "Avaliar";
+	    buttonLabel = "Avaliar"; // Changed button label to be more appropriate
+
+	    // Form for 5-star rating
+	    umDiscussao += "\t<form class=\"form--register\" action=\"" + action + "\" method=\"post\" id=\"atualizar\">";
+	    
+	    umDiscussao += "\t<table width=\"10%\" bgcolor=\"#00000\" align=\"center\">";
+	   
+	    umDiscussao += "\t\t<tr>";
+	    umDiscussao += "\t\t\t<td colspan=\"3\" align=\"left\"><font size=\"+2\"><resp><b id=\"aval\">&nbsp;&nbsp;&nbsp;" + name + "</b></font></td>";
+	    umDiscussao += "\t\t</tr>";
+	    umDiscussao += "\t\t<tr>";
+	    umDiscussao += "\t\t</tr>";
+	    umDiscussao += "\t\t<tr>";
+	    
+	    umDiscussao += "\t\t\t<td class=\"tdrat\">";
+	   
+	    umDiscussao += "\t\t\t  <div class=\"rating\">";
+	    for (int i = 1; i <= 5; i++) {
+	        umDiscussao += "\t\t\t    <input type=\"radio\" id=\"star" + i + "\" name=\"rating\" value=\"" + i + "\" />";
+	        umDiscussao += "\t\t\t    <label for=\"star" + i + "\">"+"</label>";
+	    }
+	    umDiscussao += "\t\t\t  </div>";
+	    umDiscussao += "\t\t\t</td>";
+	    umDiscussao += "\t\t\t<td align=\"left\"><input type=\"submit\" value=\"" + buttonLabel + "\" class=\"input--main__style input--button\"></td>";
+	   
+	    umDiscussao += "\t\t</tr>";
+	    
+	    umDiscussao += "\t</table>";
+	    umDiscussao += "\t</form>";
+	   
+
+	    form3 = form3.replaceFirst("<TESTE>", umDiscussao);
+
+	    List<Avaliacao> avaliacoes;
+	    avaliacoes = avaliacaoDAO.getOrderByID();
+
+	    String list = "";
+	    double soma = 0.0;
+	    int count = 0;
+	    int val;
+	    int id = testeId;
+
+	    for (Avaliacao p : avaliacoes) {
+	        val = p.getId_usr();
+	        if (val == id) {
+	            soma += (double) p.getValor();
+	            count++;
+	            //System.out.println(soma + "AAAAAAAA" + count);
+	        }
+	    }
+	    if (count == 0) {
+	        count = 1;
+	    }
+	    double result = soma / count;
+	    list = "<h2 class=\"avaliacao\">Nota: " + df.format(result) + "</h2>";
+
+	    form3 = form3.replaceFirst("<resp>", list);
+
+	    return form3;
+	}
 	
 	
 	public Object insert(Request request, Response response) {
-		int titulo = Integer.parseInt(request.queryParams("aval"));
+		int titulo = Integer.parseInt(request.queryParams("rating"));
 
 		//int autor = 0;
 		

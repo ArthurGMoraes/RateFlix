@@ -1,16 +1,26 @@
 #tela {
     color:whitesmoke;
     display: flex;
+   	max-width:1300px;
+   	margin:auto;
+   	background-color: rgba(255,255,255,0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255, 0.1);
+    box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+    border-bottom:0;
 }
 
 #imagem{
     border-radius: 5px;
-    width: 20%;
+    width: 30%;
     height: 20%;
-    margin-left: 30px;
+    //margin-left: 30px;
+    margin-right: 30px;
     border: 2px solid;
     border-color: whitesmoke;
 }
+
+
 
 #title{
     font-size: 70px;
@@ -19,8 +29,10 @@
 }
 
 #descricao{
+	max-width:900px;
     margin-top: 0;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 /* Avaliações */
@@ -55,60 +67,76 @@
     border: black solid 4px;
 }
 
-.avaliacaoContainer
-{
-    margin: 30px;
-    background-color: #303030;
-    position: relative;
-    max-height: 500px;
-    overflow-y: auto;
+
+
+
+/* Basic form styles */
+.form--register {
+	justify-content:left;
+    width: 100%;
+    
+    max-width: 1304px;
+    margin: 0 auto;
 }
 
-.avaliacaoUnique
-{
-    display: flex;
-    justify-content: space-between;
-    margin: 15px;
-    background-color: whitesmoke;
-    border-radius: 25px;
+table {
+	margin: 0 0;
+	justify-content:left;
+	background-color: rgba(255,255,255,0.13);
+    
+    border: 2px solid rgba(255,255,255, 0.1);
+    border-top:0;
+    box-shadow: 0 0 40px rgb(8, 7, 16), 0.6;
+	color: whitesmoke;
+    width: 100%;
 }
 
-.avaliacaoLeft
-{
-    width: auto; /* Set width to auto to occupy the necessary space */
-    background-color: orange;
-    border-top-left-radius: 25px; /* Circular top-left corner */
-    border-bottom-left-radius: 25px; /* Circular bottom-left corner */
-    overflow: hidden;
+
+/* Star rating styles */
+.rating {
+    display: inline-block;
+    justify-content:left;
+    align-content: center;
+    margin-right: 0;
 }
 
-.avaliacaoContainer .boxTitle
-{
-    display: block; 
-    width: 100%; 
-    padding: 7px 0px;
+.tdrat{
+width: 15%;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.rating label::before {
+    content: '★';
+    display:inline-block;
+    margin-right: 5px;
+    color: #FFD700; /* Default star color */
+}
+
+.rating input:checked + label::before {
+    color: #FFA500; /* Selected star color */
+}
+
+/* Center the star rating within the form */
+.rating {
     text-align: center;
-    background-color: black;
-    color: whitesmoke;
 }
 
-.post-button {
-    background-color: green;
-    color: white;
+/* Submit button style */
+.input--button {
+	margin-bottom:30px;
+    background-color: #0073e6;
+    color: #fff;
     border: none;
-    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
-}
-
-.post-button:hover {
-    background-color: darkgreen;
-}
-
-
-.avaliacao{
-display:flex;
-}
-#aval {
-color: whitesmoke;
+    font-size: 16px;
+    border-radius: 5px;
 }
