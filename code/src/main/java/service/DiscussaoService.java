@@ -150,6 +150,8 @@ public class DiscussaoService {
 	public Object getAll(Request request, Response response) {
 	
 		makeForm();
+		String usuario = (request.session().attribute("authenticatedUser"));
+		System.out.println(usuario);
 	    response.header("Content-Type", "text/html");
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
