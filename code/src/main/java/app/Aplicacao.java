@@ -39,12 +39,16 @@ public class Aplicacao {
             response.redirect("/login");
             return null;
         });
+        
+        get("/disc/:id", (request, response) -> discussaoService.getDisc(request, response));
 
         // Protected route, requires authentication
         get("/protected/", (request, response) -> {
             //String authenticatedUser = request.session().attribute("authenticatedUser");
             return discussaoService.getAll(request, response);
         });
+        
+        
 
         get("/delete/:id", (request, response) -> discussaoService.delete(request, response));
         get("/deleteResp/:id", (request, response) -> discussaoService.deleteResp(request, response));
