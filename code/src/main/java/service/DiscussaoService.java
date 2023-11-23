@@ -35,6 +35,7 @@ public class DiscussaoService {
 	private final int FORM_INSERT = 1;
 	private final int FORM_ORDERBY_ID = 1;
 	private int testeId;
+	private String usuarioGlobal;
 	
 	public DiscussaoService() {
 		makeForm();
@@ -62,7 +63,11 @@ public class DiscussaoService {
 		
 		String name, titulo, descricao, buttonLabel, action2;
 		
-		action = "/criar";
+		if(usuarioGlobal != null) {
+			action = "/criar";
+		} else {
+			action = "/login";
+		}
 		action2 = "/";
 		name = "Tópicos de discussão";
 		titulo = "Titulo";
@@ -99,6 +104,11 @@ public class DiscussaoService {
 		
 		for (Discussao p : discussoes) {
 			if(!(p.getTitulo().equals(teste)) && !(p.getConteudo().equals(teste))) {
+			String acao = "/ ";
+			if (usuarioGlobal!= null && p.getAutor().equals(usuarioGlobal)) {
+			  acao = "/delete/"+p.getId()+" ";
+			}
+			
 			list += "<div class=\"discTexto\">";
 			
 			list += "\n<a href=\"/disc/" + p.getId()+ "\" style=\"text-decoration: none; color: whitesmoke;\">"+
@@ -106,7 +116,7 @@ public class DiscussaoService {
             		  "<p>" + p.getConteudo() + "</p>\n" +
             		  "<p>" + p.getAutor() + "</p>\n" +
             		  "</a>" +
-            		  "\n<a href=\"/delete/" + p.getId()+ "\" style=\"text-decoration: none; color: black; background-color:white;\"> x </a>" ;
+            		  "\n<a href=" + acao+  "\" style=\"text-decoration: none; color: black; background-color:white;\"> x </a>" ;
             		
 					
 			
@@ -126,7 +136,7 @@ public class DiscussaoService {
 	public Object insert(Request request, Response response) {
 		String titulo = request.queryParams("titulo");
 		String conteudo = request.queryParams("descricao");
-		String autor = "autor";
+		String autor = usuarioGlobal;
 		int curtidas = 10;
 		String data = "data";
 		String resp = "";
@@ -150,8 +160,8 @@ public class DiscussaoService {
 	public Object getAll(Request request, Response response) {
 	
 		makeForm();
-		String usuario = (request.session().attribute("authenticatedUser"));
-		System.out.println(usuario);
+		usuarioGlobal = (request.session().attribute("authenticatedUser"));
+		System.out.println(usuarioGlobal);
 	    response.header("Content-Type", "text/html");
 	    response.header("Content-Encoding", "UTF-8");
 		return form;
@@ -198,17 +208,18 @@ public class DiscussaoService {
 	}
 	
 	public Object delete(Request request, Response response) {
-        int id = Integer.parseInt(request.params(":id"));
-        Discussao discussao = discussaoDAO.get(id);
+        String id = (request.params(":id"));
+        int id2 = Integer.parseInt(id);
+        Discussao discussao = discussaoDAO.get(id2);
         String resp = "";       
 
         if (discussao != null) {
-            discussaoDAO.delete(id);
+            discussaoDAO.delete(id2);
             response.status(200); // success
-            resp = "Discussao (" + id + ") excluído!";
+            resp = "Discussao (" + id2 + ") excluído!";
         } else {
             response.status(404); // 404 Not found
-            resp = "Discussao (" + id + ") não encontrado!";
+            resp = "Discussao (" + id2 + ") não encontrado!";
         }
 		makeForm();
 		return form.replaceFirst("<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">", "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">");

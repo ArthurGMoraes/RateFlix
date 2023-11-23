@@ -45,7 +45,7 @@ public class UserSigninService {
         if (nome != null && senha != null && !nome.equals(userDAO.getByNome(nome))) {
         	Usuario user = new Usuario(-1, nome, senha);
             if (userDAO.insert(user)) {
-            	response.redirect("/");
+            	response.redirect("/login");
                 return "Usuário " + nome + " cadastrado com sucesso!";
             } 
         }else {

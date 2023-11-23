@@ -41,7 +41,7 @@ public class UserLoginService {
             request.session().attribute("authenticatedUser", user.toString());
 
             // Redirect to the main page or any other desired destination
-            response.redirect("/protected/");
+            response.redirect("/");
             return "ok";
         } else {
             // Authentication failed
