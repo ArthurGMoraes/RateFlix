@@ -101,7 +101,8 @@ ALTER TABLE ONLY public.usuario
 CREATE TABLE public.avaliacao (
     id integer DEFAULT nextval('public."id-aval"'::regclass) NOT NULL,
     valor integer,
-    id_usr integer
+    id_usr integer,
+    id_filme integer
 );
 
 

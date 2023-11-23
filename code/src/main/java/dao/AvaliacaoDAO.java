@@ -29,8 +29,8 @@ public class AvaliacaoDAO extends DAO {
 	public boolean insert(Avaliacao avaliacao) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO avaliacao (valor, id_usr) "
-		               + "VALUES (" + avaliacao.getValor() + ", " + avaliacao.getId_usr() + ");";
+			String sql = "INSERT INTO avaliacao (valor, id_usr, id_filme) "
+		               + "VALUES (" + avaliacao.getValor() + ", " + avaliacao.getId_usr() + ", " + avaliacao.getId_filme() + ");";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -53,7 +53,7 @@ public class AvaliacaoDAO extends DAO {
 			String sql = "SELECT * FROM avaliacao WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"));
+	        	 avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"),  rs.getInt("id_filme"));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -86,7 +86,7 @@ public class AvaliacaoDAO extends DAO {
 			String sql = "SELECT * FROM avaliacao" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Avaliacao p = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"));
+	        	Avaliacao p = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"),  rs.getInt("id_filme"));
 	            discussoes.add(p);
 	        }
 	        st.close();
@@ -118,11 +118,11 @@ public class AvaliacaoDAO extends DAO {
      * ### DELETE
      */
 	
-	public boolean delete(int id) {
+	public boolean delete(int id_usr) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM avaliacao WHERE id = " + id);
+			st.executeUpdate("DELETE FROM avaliacao WHERE id_usr = " + id_usr);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  

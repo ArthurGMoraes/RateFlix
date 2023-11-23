@@ -9,9 +9,11 @@ import java.util.List;
 
 import dao.AvaliacaoDAO;
 import dao.FilmeDAO;
+import dao.UserDAO;
 import model.Avaliacao;
 import model.Discussao;
 import model.Filme;
+import model.Usuario;
 //import service.AvaliacaoService;
 import spark.Request;
 import spark.Response;
@@ -31,6 +33,7 @@ public class FilmeService {
 	private final DecimalFormat df = new DecimalFormat("0.00");
 	//private FilmeDAO filmeDAO = new FilmeDAO();
 	private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
+	private UserDAO userDAO = new UserDAO();
 	//private AvaliacaoService avaliacao = new AvaliacaoService();
 	private String form3;
 	private int testeId;
@@ -38,17 +41,23 @@ public class FilmeService {
 	private String testeForm;
 	private final int FORM_INSERT = 1;
 	private final int FORM_ORDERBY_ID = 1;
+	private String usuarioGlobal;
 	
 	
 	public Object makeFilme(Request request, Response response) {
+		
+		String idS;
 		int id = 0;
 		String type = "";
-		System.out.println("passou1");
+		System.out.println(request.params());
+		usuarioGlobal = (request.session().attribute("authenticatedUser"));
 		if((request.params(":id") ==null ) ){
 		 id = testeId;
 		 type = testeType;
 		} else {
-		 id = testeId= Integer.parseInt(request.params(":id"));
+		 idS = request.params(":id");
+		 System.out.println(idS);
+		 id = testeId= Integer.parseInt(idS);
 		 type =testeType= (request.params(":type"));
 		}
 		//System.out.println(testeType + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
@@ -215,7 +224,7 @@ public class FilmeService {
 	    int id = testeId;
 
 	    for (Avaliacao p : avaliacoes) {
-	        val = p.getId_usr();
+	        val = p.getId_filme();
 	        if (val == id) {
 	            soma += (double) p.getValor();
 	            count++;
@@ -239,7 +248,7 @@ public class FilmeService {
 
 		//int autor = 0;
 		
-		Avaliacao avaliacao = new Avaliacao(-1, titulo, testeId);
+		Avaliacao avaliacao = new Avaliacao(-1, titulo,userDAO.getByNome(usuarioGlobal).getId(), testeId);
 		
 		String resp = "";
 		
