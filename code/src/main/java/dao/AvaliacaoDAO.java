@@ -95,6 +95,24 @@ public class AvaliacaoDAO extends DAO {
 		}
 		return discussoes;
 	}
+	
+	public List<Avaliacao> getIdsByUsr(int id ) {
+		List<Avaliacao> discussoes = new ArrayList<Avaliacao>();
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			String sql = "SELECT * FROM avaliacao WHERE id_usr ="+ id;
+			ResultSet rs = st.executeQuery(sql);	           
+	        while(rs.next()) {	            	
+	        	Avaliacao p = new Avaliacao(rs.getInt("id"), rs.getInt("valor"),  rs.getInt("id_usr"),  rs.getInt("id_filme"));
+	            discussoes.add(p);
+	        }
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return discussoes;
+	}
 
     /*
      * ### UPDATE

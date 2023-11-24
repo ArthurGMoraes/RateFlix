@@ -5,6 +5,8 @@ import model.Usuario;
 import spark.Request;
 import spark.Response;
 import java.util.Random;
+import java.security.*;
+import java.math.*;
 
 public class UserSigninService {
 
@@ -20,6 +22,7 @@ public class UserSigninService {
                 "                    <input type=\"password\" name=\"senha\" placeholder=\"Senha\" required>\r\n" + //
                 "                \r\n" + //
                 "                    <input type=\"submit\" value=\"Registrar\">\r\n" + //
+                "<button type=\"button\" onclick=\"window.location.href='/login'\">Logar</button>" +
                 "                </form";
         
         return form;
@@ -34,9 +37,13 @@ public class UserSigninService {
         return random.nextInt((max - min) + 1) + min;
     }
 
-    public Object registrar(Request request, Response response) {
+    public Object registrar(Request request, Response response) throws NoSuchAlgorithmException {
+    	MessageDigest m=MessageDigest.getInstance("MD5");
+    	
         String nome = request.queryParams("nome");
         String senha = request.queryParams("senha");
+        m.update(senha.getBytes(),0,senha.length()); 
+        senha = new BigInteger(1,m.digest()).toString(16);
         
         //System.out.println(nome);
         //System.out.println(userDAO.getByNome(nome));

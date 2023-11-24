@@ -6,6 +6,8 @@ import dao.UserDAO;
 import model.Usuario;
 import spark.Request;
 import spark.Response;
+import java.security.*;
+import java.math.*;
 
 public class UserLoginService {
 
@@ -24,14 +26,18 @@ public class UserLoginService {
                 "                    <input type=\"password\" name=\"senha\" placeholder=\"Senha\" required>\r\n" + //
                 "            \r\n" + //
                 "                    <input type=\"submit\" value=\"Logar\">\r\n" + //
+                "                     <button type=\"button\" onclick=\"window.location.href='/criarConta'\">Registre-se</button>" +
                 "                </form>";
         
         return form;
     }
 
-    public Object login(Request request, Response response) {
+    public Object login(Request request, Response response) throws NoSuchAlgorithmException {
         String nome = request.queryParams("nome");
         String senha = request.queryParams("senha");
+        MessageDigest m=MessageDigest.getInstance("MD5");
+        m.update(senha.getBytes(),0,senha.length()); 
+        senha = new BigInteger(1,m.digest()).toString(16);
         
         // Check if the user exists in the database
         Usuario user = userDAO.getByNome(nome);

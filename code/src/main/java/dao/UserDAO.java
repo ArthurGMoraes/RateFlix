@@ -25,20 +25,20 @@ public class UserDAO extends DAO {
 	
 	
 	public boolean insert(Usuario user) {
-		boolean status = false;
+	    boolean status = false;
 
-		
-		try {
-			String sql = "INSERT INTO usuario (nome, senha) "
-		               + "VALUES ('"+ user.getNome() + "', " + user.getSenha() + ");";
-			PreparedStatement st = conexao.prepareStatement(sql);
-			st.executeUpdate();
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
+	    try {
+	        String sql = "INSERT INTO usuario (nome, senha) VALUES (?, ?)";
+	        PreparedStatement st = conexao.prepareStatement(sql);
+	        st.setString(1, user.getNome());
+	        st.setString(2, user.getSenha());
+	        st.executeUpdate();
+	        st.close();
+	        status = true;
+	    } catch (SQLException u) {
+	        throw new RuntimeException(u);
+	    }
+	    return status;
 	}
 	
 	public Usuario get(int id) 
