@@ -5,7 +5,6 @@ import service.DiscussaoService;
 import service.FilmeService;
 import service.UserLoginService;
 import service.UserSigninService;
-import service.TesteService;
 
 public class Aplicacao {
 
@@ -13,7 +12,7 @@ public class Aplicacao {
     private static FilmeService filmeService = new FilmeService();
     private static UserLoginService loginService = new UserLoginService();
     private static UserSigninService signinService = new UserSigninService();
-    private static TesteService testeService = new TesteService();
+   
 
     public static void main(String[] args) {
         port(1234);
@@ -51,7 +50,6 @@ public class Aplicacao {
         post("/criar", (request, response) -> discussaoService.insert(request, response));
         
         post("/criarResp", (request, response) -> discussaoService.insertResp(request, response));
-        
-        get("/teste", (request,response) -> testeService.testar(request,response));
+         
     }
 }
